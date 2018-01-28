@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" ?>
+<layman>
+   <overlay
+      type    = "git"
+      src     = "https://github.com/BlackestDawn/gentoo_overlay.git"
+      contact = ""
+      status  = "unofficial"
+      name    = "b4d">
+      <link>https://github.com/BlackestDawn/gentoo_overlay</link>
+      <description>Various ebuild and patches for personal use and backup</description>
+   </overlay>
+</layman>
