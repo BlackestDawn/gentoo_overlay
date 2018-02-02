@@ -1,0 +1,16 @@
+# Config file for /etc/init.d/ubooquity
+
+# User that Ubooquity should as
+UBOOQUITY_USER="ubooquity"
+
+# Options for the server
+UBOOQUITY_OPTS="--webadmin --headless --port 2202"
+
+# Working directory
+WORKDIR=${HOME}
+
+# Max memory that it should use.
+UBOOQUITY_MEM="-Xmx512m"
+
+# Logging directory
+UBOOQUITY_LOGDIR="/var/log/ubooquity"

@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+
+start() {
+  ebegin "Starting Ubooquiy"
+#  nohup java $MEM_OPT -jar /opt/ubooquity/lib/Ubooquity.jar -port $UBOOQUITY_PORT -webadmin </dev/null &>/dev/null &
+  start-stop-daemon --start --user "${UBOOQUITY_USER}" --name "ubooquity" \
+    --background --pidfile /run/ubooquity.pid --make-pidfile \
+    --stdout ${UBOOQUITY_LOGDIR}/out.log --stderr ${UBOOQUITY_LOGDIR}/err.log \
+#    --exec /usr/bin/ubooquity -e MEM_OPTS="${UBOOQUITY_MEM}" -- ${UBOOQUITY_OPTS}
+    --exec java -- -Dunixfs=false ${UBOOQUITY_MEM} -Dapplication.update=skip -Dapplication.deployment=portable -DuseExtendedFileAttributes=true -DuseCreationDate=false -Dfile.encoding="UTF-8" -Dsun.jnu.encoding="UTF-8" -Djna.library.path=/usr/share/ubooquity/lib/ -Djava.library.path=/usr/share/ubooquity/lib/ -Dsun.net.client.defaultConnectTimeout=5000 -Dsun.net.client.defaultReadTimeout=25000 -jar /usr/share/ubooquity/lib/Ubooquity.jar ${UBOOQUITY_OPTS} --workdir ${WORKDIR}
+  eend $?
+}
+
+stop() {
+  ebegin "Stopping Ubooquity"
+  start-stop-daemon --stop --user "${UBOOQUITY_USER}" \
+    --name ubooquity --pidfile /run/ubooquity.pid
+  eend $?
+}

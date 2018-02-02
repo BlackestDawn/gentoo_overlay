@@ -1,0 +1,19 @@
+# Config file for /etc/init.d/ubooquity
+
+# User that Ubooquity should as
+# UBOOQUITY_USER="ubooquity"
+
+# Port for the library and normal webinterface
+# LIB_PORT=2202
+
+# Port for the admin-interface
+# ADMIN_PORT=2203
+
+# Working directory
+# WORKDIR=${HOME}
+
+# Max memory that it should use.
+# MEM="512m"
+
+# Logging directory
+# UBOOQUITY_LOGDIR="/var/log/ubooquity"

@@ -1,0 +1,2 @@
+#!/bin/bash
+java -Dunixfs=false ${MEM_OPTS} -Dapplication.update=skip -Dapplication.deployment=portable -DuseExtendedFileAttributes=true -DuseCreationDate=false -Dfile.encoding="UTF-8" -Dsun.jnu.encoding="UTF-8" -Djna.library.path=/usr/share/ubooquity/lib/ -Djava.library.path=/usr/share/ubooquity/lib/ -Dsun.net.client.defaultConnectTimeout=5000 -Dsun.net.client.defaultReadTimeout=25000 -jar /usr/share/ubooquity/lib/Ubooquity.jar "$@" --workdir ${HOME}

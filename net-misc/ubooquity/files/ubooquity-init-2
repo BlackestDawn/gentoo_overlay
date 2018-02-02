@@ -1,0 +1,28 @@
+#!/sbin/openrc-run
+
+WDIR=${WORKDIR:-/var/lib/ubooquity}
+UB_USER=${UBOOQUITY_USER:-ubooquity}
+UB_LOGDIR=${UBOOQUITY_LOGDIR:-/var/lib/ubooquity}
+
+start() {
+  ebegin "Starting Ubooquiy"
+#  nohup java $MEM_OPT -jar /opt/ubooquity/lib/Ubooquity.jar -port $UBOOQUITY_PORT -webadmin </dev/null &>/dev/null &
+  start-stop-daemon --start --user "${UB_USER}" --name "ubooquity" \
+    --background --pidfile /run/ubooquity.pid --make-pidfile \
+    --stdout ${UB_LOGDIR}/out.log --stderr ${UB_LOGDIR}/err.log \
+    --exec /usr/bin/java -- \
+      -Dunixfs=false -Xmx${MEM:-512m} -Dapplication.update=skip -Dapplication.deployment=portable \
+      -DuseExtendedFileAttributes=true -DuseCreationDate=false -Dfile.encoding="UTF-8" -Dsun.jnu.encoding="UTF-8" \
+      -Djna.library.path=/usr/share/ubooquity/lib/ -Djava.library.path=/usr/share/ubooquity/lib/ \
+      -Dsun.net.client.defaultConnectTimeout=5000 -Dsun.net.client.defaultReadTimeout=25000 \
+      -jar /usr/share/ubooquity/lib/Ubooquity.jar \
+      --headless --remoteadmin --workdir "${WDIR}" --libraryport ${LIB_PORT:-2202} --adminport ${ADMIN_PORT:-2203}
+  eend $?
+}
+
+stop() {
+  ebegin "Stopping Ubooquity"
+  start-stop-daemon --stop --user "${UB_USER}" \
+    --name ubooquity --pidfile /run/ubooquity.pid
+  eend $?
+}
