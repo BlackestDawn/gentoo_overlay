@@ -18,13 +18,14 @@ DEPEND="virtual/httpd-php
 		dev-lang/php"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/Organizr"
+WEBAPP_MANUAL_SLOT="yes"
+need_httpd_fastcgi
 
 src_install() {
 	webapp_src_preinst
 
-	dodoc CODE_OF_CONDUCT.md README* LICENSE
-	rm CODE_OF_CONDUCT.md COPYING README* LICENSE .gitignore .travis.yml || die
+	#dodoc CODE_OF_CONDUCT.md README* LICENSE
+	rm CODE_OF_CONDUCT.md README* LICENSE .gitignore .gitattributes || die
 
 	insinto "${MY_HTDOCSDIR}"
 	doins -r .
