@@ -70,7 +70,7 @@ case "$1" in
             echo "Starting $DESC"
             rm -rf $PID_PATH || return 1
             install -d --mode=0755 -o $RUN_AS $PID_PATH || return 1
-            start-stop-daemon -d $APP_PATH -c $RUN_AS --start --background --pidfile $PID_FILE --exec $DAEMON -- $DAEMON_OPTS
+            start-stop-daemon -d $APP_PATH -c $RUN_AS --start --name Radarr --background --pidfile $PID_FILE --exec $DAEMON -- $DAEMON_OPTS
         else
             echo "Radarr already running."
         fi
@@ -78,13 +78,13 @@ case "$1" in
     stop)
         echo "Stopping $DESC"
         echo $RADARR_PID > $PID_FILE
-        start-stop-daemon --stop --pidfile $PID_FILE --retry 15
+        start-stop-daemon --stop --pidfile $PID_FILE --retry 15 --name Radarr
     ;;
 
     restart|force-reload)
         echo "Restarting $DESC"
-        start-stop-daemon --stop --pidfile $PID_FILE --retry 15
-        start-stop-daemon -d $APP_PATH -c $RUN_AS --start --background --pidfile $PID_FILE --exec $DAEMON -- $DAEMON_OPTS
+        start-stop-daemon --stop --pidfile $PID_FILE --retry 15 --name Radarr
+        start-stop-daemon -d $APP_PATH -c $RUN_AS --start --name Radarr --background --pidfile $PID_FILE --exec $DAEMON -- $DAEMON_OPTS
     ;;
     status)
         # Use LSB function library if it exists
