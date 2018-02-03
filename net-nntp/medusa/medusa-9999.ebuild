@@ -64,7 +64,8 @@ src_install() {
 	echo ${last_commit} > version.txt
 
 	insinto /usr/share/${PN}
-	doins -r .build .github dredd lib medusa runscripts static tests views vue .checkignore .editorconfig .gitattributes .gitignore .travis.yml SickBeard.py package.json pytest.ini setup.py start.py tox.ini yarn.lock
+	#doins -r .build .github dredd lib medusa runscripts static tests views vue .checkignore .editorconfig .gitattributes .gitignore .travis.yml SickBeard.py package.json pytest.ini setup.py start.py tox.ini yarn.lock
+	doins -r .build .github dredd lib medusa runscripts static tests views vue .editorconfig .gitattributes .gitignore .travis.yml SickBeard.py package.json pytest.ini setup.py start.py tox.ini yarn.lock
 
 	fowners -R ${PN}:${PN} /usr/share/${PN}
 }
