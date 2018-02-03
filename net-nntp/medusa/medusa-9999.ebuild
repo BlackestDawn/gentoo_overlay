@@ -20,7 +20,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="libressl"
 
-DEPEND="${PTYHON_DEPS}"
+DEPEND=""
 RDEPEND="
 	media-video/mediainfo
 	media-video/subliminal
