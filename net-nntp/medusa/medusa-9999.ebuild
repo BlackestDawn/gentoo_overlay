@@ -22,6 +22,7 @@ IUSE="libressl"
 
 DEPEND="${PTYHON_DEPS}"
 RDEPEND="
+	dev-python/guessit
 	media-video/mediainfo
 	dev-python/cryptography
 	dev-python/pyopenssl
