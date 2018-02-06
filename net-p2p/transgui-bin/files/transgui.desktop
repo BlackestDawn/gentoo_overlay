@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Transmission Remote GUI
+GenericName=BitTorrent Client
+Comment=Remote GUI for Transmission bittorrent daemon
+Exec=transgui
+Icon=transgui
+Terminal=false
+Type=Application
+MimeType=application/x-bittorrent;x-scheme-handler/magnet;
+Categories=Network;FileTransfer;P2P;Qt;
+X-AppInstall-Keywords=torrent
