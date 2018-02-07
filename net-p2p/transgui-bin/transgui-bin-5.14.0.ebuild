@@ -27,7 +27,7 @@ src_install() {
 dobin transgui
 
 #insinto /usr/share/icons/hicolor/48x48/apps
-doicon  doicon -s 48 icons/hicolor/48x48/transgui.png
+doicon -s 48 icons/hicolor/48x48/transgui.png
 
 domenu "${FILESDIR}/trangui.desktop"
 }
