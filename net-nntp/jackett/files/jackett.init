@@ -43,7 +43,7 @@ start() {
 
         start-stop-daemon --start --background --make-pidfile --pidfile ${pidfile}\
         -u ${USER} -g ${GROUP} --name Jackett\
-    --exec ${bin} -- ${program} \
+    --exec ${bin} -- ${program}
         eend $?
 }
 
