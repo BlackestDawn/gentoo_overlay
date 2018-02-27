@@ -29,8 +29,8 @@ check_config() {
     # Quick and ugly but should get the job done.
 
     chown -R ${USER}:${GROUP} "${run_dir}"
-    chown -R ${USER}.${GROUP} "${var_dir}"
-    chown -R ${USER}.${GROUP} "${etc_dir}"
+    chown -R ${USER}:${GROUP} "${var_dir}"
+    chown -R ${USER}:${GROUP} "${etc_dir}"
     if [ "${WEBUPDATER}" = "YES" ]; then
                 chown -R ${USER}.${GROUP} "${CODE_DIR}"
         fi
@@ -43,6 +43,7 @@ start() {
 
         start-stop-daemon --start --background --make-pidfile --pidfile ${pidfile}\
         --name Radarr -d $APP_DIR \
+        --user ${USER} --group ${GROUP} \
     --exec ${bin} -- ${program} \
     --daemon --log=${log_dir}/${log_file} --data_dir ${var_dir}
         eend $?
