@@ -10,7 +10,7 @@ depend() {
 run_dir="/var/run/sonarr"
 pidfile="$run_dir/sonarr.pid"
 etc_dir="/etc/sonarr"
-var_dir="/var/lib/sonarr"
+var_dir="/var/sonarr"
 log_dir="/var/log/sonarr"
 log_file="sonarr.log"
 program="$APP_DIR/NzbDrone.exe"
@@ -29,8 +29,8 @@ check_config() {
     # Quick and ugly but should get the job done.
 
     chown -R ${USER}:${GROUP} "${run_dir}"
-    chown -R ${USER}.${GROUP} "${var_dir}"
-    chown -R ${USER}.${GROUP} "${etc_dir}"
+    chown -R ${USER}:${GROUP} "${var_dir}"
+    chown -R ${USER}:${GROUP} "${etc_dir}"
     if [ "${WEBUPDATER}" = "YES" ]; then
                 chown -R ${USER}.${GROUP} "${CODE_DIR}"
         fi
@@ -42,7 +42,8 @@ start() {
         ebegin "Starting Sonarr"
 
         start-stop-daemon --start --background --make-pidfile --pidfile ${pidfile}\
-        -u ${USER} -g ${GROUP} --name Sonarr\
+        --name Sonarr \
+        --user ${USER} --group ${GROUP} \
     --exec ${bin} -- ${program} \
     --daemon --log=${log_dir}/${log_file} --data_dir ${var_dir}
         eend $?
