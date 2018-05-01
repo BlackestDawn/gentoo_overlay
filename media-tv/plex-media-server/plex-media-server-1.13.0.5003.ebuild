@@ -3,13 +3,12 @@
 
 EAPI=6
 inherit eutils user systemd unpacker pax-utils
-MINOR1="4235"
-MINOR2="2d20185b0"
+HASH="8fcb5b6e5"
 
 _APPNAME="plexmediaserver"
 _USERNAME="plex"
 _SHORTNAME="${_USERNAME}"
-_FULL_VERSION="${PV}.${MINOR1}-${MINOR2}"
+_FULL_VERSION="${PV}-${HASH}"
 
 URI="https://downloads.plex.tv/plex-media-server"
 DESCRIPTION="A free media library that is intended for use with a plex client."
@@ -87,10 +86,11 @@ src_install() {
 pkg_postinst() {
 	einfo ""
 	einfo "This is Plex Media Server Linux / Ubuntu 64-Bit."
-    einfo "1.8.3.4235-2d20185b0 Public Release. September 4, 2017."
+    einfo "${PV}-${HASH} April 27, 2018."
+	einfo "Public release"
     einfo ""
 	einfo "Changes are described in the Plex Release Announcement forums:"
-	einfo "https://forums.plex.tv/discussion/comment/1510687/#Comment_1510687"
+	einfo "https://forums.plex.tv/discussion/comment/1661803/#Comment_1661803"
     einfo ""
     elog "Plex Media Server is now installed. Please check the configuration file in /etc/plex/${_SHORTNAME} to verify the default settings."
     elog "To start the Plex Server, run 'rc-config start plex-media-server', you will then be able to access your library at http://<ip>:32400/web/"
